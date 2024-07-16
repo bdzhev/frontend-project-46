@@ -1,0 +1,8 @@
+{
+    "host": "hexlet.io",
+    "timeout": 50,
+    "nested": {
+      "animal": "cat",
+      "sound": "nice"
+    }
+  }
