@@ -1,0 +1,7 @@
+includes:
+  - 'common.yaml'
+deliverables:
+  - name: 'HTML5'
+    context:
+      idref: 'html'
+    output: '.'
