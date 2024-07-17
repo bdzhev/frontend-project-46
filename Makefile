@@ -4,5 +4,8 @@ install:
 publish:
 	npm publish --dry-run
 
-make lint:
+lint:
 	npx eslint $(code)
+
+test:
+	NODE_OPTIONS=--experimental-vm-modules npx jest
