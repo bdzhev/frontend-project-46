@@ -40,3 +40,12 @@ test('nested yaml cases', () => {
   expect(genDiff(path1YAML, path2YAML, 'plain'))
   .toEqual(readFileSync(case5Path, 'utf-8'));
 });
+
+test('hexlet-test', () => {
+  const hexletCaseFile = getContent('__fixtures__/hexlet-test.txt');
+  const hexletpath1 = '__fixtures__/hexlet-file1.json';
+  const hexletpath2 = '__fixtures__/hexlet-file2.json';
+
+  expect(genDiff(hexletpath1, hexletpath2))
+  .toEqual(readFileSync(hexletCaseFile, 'utf-8'));
+});

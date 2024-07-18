@@ -5,7 +5,7 @@ import makePlain from './plain.js';
 const makeFormatted = (difference, format) => {
   switch (format) {
     case 'stylish':
-      return `{\n${makeStylish(difference)}\n}`;
+      return makeStylish(difference);
     case 'plain':
       return makePlain(difference);
     case 'json':

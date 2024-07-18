@@ -2,41 +2,42 @@
 import _ from 'lodash';
 
 const addIndent = (count) => '  '.repeat(count);
-const indentStep = 2;
+const indentStep = 1;
 
 const parseObj = (data, depth) => {
   const entries = _.sortBy(Object.entries(data), ([key]) => key);
   const lines = entries.map((node) => {
     const [key, value] = node;
     if (typeof (value) === 'object') {
-      return (`${addIndent(depth)}${key}: {\n${parseObj(value, depth + 1)}}`);
+      return (`${addIndent(depth + indentStep)}${key}: {\n${parseObj(value, depth + 1)}}`);
     }
-    return (`${addIndent(depth)}${key}: ${value}\n`);
+    return (`${addIndent(depth + indentStep)}${key}: ${value}\n`);
   });
   return `{\n${lines.join('')}${addIndent(depth - indentStep)}}`;
 };
 
-const makeStylish = (node, depth = indentStep) => {
+const makeStylish = (node, depth = 1) => {
   const nodeStylized = node.map((item) => {
     const { key, value } = item;
+    const newDepth = depth + indentStep;
     switch (item.status) {
       case 'same':
-        return `${addIndent(depth)}${key}: ${value}`;
+        return `${addIndent(newDepth)}${key}: ${value}`;
       case 'removed':
-        return `${addIndent(depth - 1)}- ${key}: ${value}`;
+        return `${addIndent(newDepth - 1)}- ${key}: ${value}`;
       case 'added':
         if (typeof (value) === 'object') {
-          return `${addIndent(depth - 1)}+ ${key}: ${parseObj(value, depth + indentStep)}`;
+          return `${addIndent(newDepth - 1)}+ ${key}: ${parseObj(value, newDepth + indentStep)}`;
         }
-        return `${addIndent(depth - 1)}+ ${key}: ${value}`;
+        return `${addIndent(newDepth - 1)}+ ${key}: ${value}`;
       case 'changed':
-        return `${addIndent(depth - 1)}- ${key}: ${item.oldValue}\n${addIndent(depth - 1)}+ ${key}: ${item.newValue}`;
+        return `${addIndent(newDepth - 1)}- ${key}: ${item.oldValue}\n${addIndent(newDepth - 1)}+ ${key}: ${item.newValue}`;
       case 'hasChildren':
-        return `${addIndent(depth)}${key}: {\n${makeStylish(value, depth + indentStep)}\n${addIndent(depth)}}`;
+        return `${addIndent(newDepth)}${key}: ${makeStylish(value, newDepth + indentStep)}`;
       default: throw new Error('Incorrect item status.');
     }
   });
-  return `${nodeStylized.join('\n')}`;
+  return `{\n${nodeStylized.join('\n')}\n${addIndent(depth - indentStep)}}`;
 };
 
 export default makeStylish;
