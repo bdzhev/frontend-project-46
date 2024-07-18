@@ -1,0 +1,45 @@
+[
+  {
+    "key": "includes",
+    "status": "same",
+    "value": "common.yaml"
+  },
+  {
+    "key": "deliverables",
+    "status": "hasChildren",
+    "value": [
+      {
+        "key": "name",
+        "status": "changed",
+        "oldValue": "HTML5",
+        "newValue": "HTML100"
+      },
+      {
+        "key": "context",
+        "status": "hasChildren",
+        "value": [
+          {
+            "key": "idref",
+            "status": "same",
+            "value": "html"
+          },
+          {
+            "key": "super",
+            "status": "removed",
+            "value": "nice"
+          }
+        ]
+      },
+      {
+        "key": "output",
+        "status": "same",
+        "value": "."
+      }
+    ]
+  },
+  {
+    "key": "additional",
+    "status": "added",
+    "value": "{\n        super: cool \n        mega: good\n    }"
+  }
+]

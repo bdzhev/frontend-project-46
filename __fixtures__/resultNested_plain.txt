@@ -1,0 +1,3 @@
+Property 'additional' was added with value: [complex value]
+Property 'deliverables.context.super' was removed
+Property 'deliverables.name' was updated. From 'HTML5' to 'HTML100'

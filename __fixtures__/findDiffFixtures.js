@@ -79,11 +79,11 @@ const nestedResult = [
   },
   {
     key: 'bodyparts',
-    status: 'same',
+    status: 'hasChildren',
     value: [
       {
         key: 'body',
-        status: 'same',
+        status: 'hasChildren',
         value: [
           {
             key: 'arms',
@@ -105,7 +105,7 @@ const nestedResult = [
       },
       {
         key: 'head',
-        status: 'same',
+        status: 'hasChildren',
         value: [
           {
             key: 'ears',

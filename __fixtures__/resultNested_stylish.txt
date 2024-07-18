@@ -1,0 +1,16 @@
+{
+  + additional: {
+        mega: good
+        super: cool
+    }
+    deliverables: {
+        context: {
+            idref: html
+          - super: nice
+        }
+      - name: HTML5
+      + name: HTML100
+        output: .
+    }
+    includes: common.yaml
+}

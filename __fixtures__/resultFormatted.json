@@ -1,0 +1,40 @@
+[
+  {
+    "key": "follow",
+    "status": "removed",
+    "value": false
+  },
+  {
+    "key": "host",
+    "status": "same",
+    "value": "hexlet.io"
+  },
+  {
+    "key": "nested",
+    "status": "hasChildren",
+    "value": [
+      {
+        "key": "animal",
+        "status": "changed",
+        "oldValue": "dog",
+        "newValue": "cat"
+      },
+      {
+        "key": "sound",
+        "status": "changed",
+        "oldValue": "woof",
+        "newValue": "nice"
+      }
+    ]
+  },
+  {
+    "key": "proxy",
+    "status": "removed",
+    "value": "123.234.53.22"
+  },
+  {
+    "key": "timeout",
+    "status": "same",
+    "value": 50
+  }
+]

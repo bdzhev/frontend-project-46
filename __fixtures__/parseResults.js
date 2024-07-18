@@ -19,29 +19,26 @@ const jsonResult2 = {
 };
 
 const yamlResult1 = {
-  includes: [ 'common.yaml' ],
-  deliverables: [
-    { 
+  includes: 'common.yaml',
+  deliverables: { 
       name: 'HTML5',
       context: {
-        idref: 'html'
+        idref: 'html',
+        super: 'nice'
       },
       output: '.'
     }
-  ]
 };
 
 const yamlResult2 = {
-  includes: [ 'common.yaml' ],
-  deliverables: [
-    { 
+  includes: 'common.yaml',
+  deliverables: { 
       name: 'HTML100',
       context: {
         idref: 'html'
       },
       output: '.'
-    }
-  ],
+    },
   additional: {
     super: 'cool',
     mega: 'good'
