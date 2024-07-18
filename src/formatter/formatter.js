@@ -1,16 +1,18 @@
 #!/usr/bin/env node
-import makeStylish from './stylish.js'
-import makePlain from './plain.js'
-const format = (difference, format) => {
+import makeStylish from './stylish.js';
+import makePlain from './plain.js';
+
+const makeFormatted = (difference, format) => {
   switch (format) {
     case 'stylish':
-      return makeStylish(difference);
+      return `{\n${makeStylish(difference)}\n}`;
     case 'plain':
       return makePlain(difference);
     case 'json':
+      return JSON.stringify(difference);
 
     default: throw new Error(`Unknown style option.
       Available options: "stylish", "plain" and "json". More info: gendiff -h`);
   }
 };
-export default format;
+export default makeFormatted;

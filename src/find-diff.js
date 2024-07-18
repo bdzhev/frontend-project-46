@@ -16,7 +16,7 @@ const findDiff = (dataA, dataB) => {
     }
 
     if (typeof (dataAValue) === 'object' && typeof (dataBValue) === 'object') {
-      return ({ key, status: 'same', value: findDiff(dataAValue, dataBValue) });
+      return ({ key, status: 'hasChildren', value: findDiff(dataAValue, dataBValue) });
     }
 
     if (dataAValue === dataBValue) {
