@@ -23,7 +23,7 @@
     "power-assert": "^1.6.1"
   },
   "dependencies": {
-    "commander": "^12.1.0",
+    "commander": "^9.4.1",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   }
