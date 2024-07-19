@@ -1,4 +1,0 @@
-Property 'follow' was removed
-Property 'nested.animal' was updated. From 'dog' to 'cat'
-Property 'nested.sound' was updated. From 'woof' to 'nice'
-Property 'proxy' was removed

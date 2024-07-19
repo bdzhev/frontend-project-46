@@ -1,51 +1,36 @@
-import genDiff from "../src/index.js";
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
-import { cwd } from 'process';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs';
+import genDiff from '../src/index.js';
 
-const path1JSON = '__fixtures__/testfile1.json';
-const path2JSON = '__fixtures__/testfile2.json';
-const path1YAML = '__fixtures__/testfile1.yaml';
-const path2YAML= '__fixtures__/testfile2.yml';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const getContent = (pathRaw) => resolve(cwd(), pathRaw);
+const getFixturePath = (filepath) => path.join(__dirname, '..', '__fixtures__', filepath);
+const readFixture = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8').trim();
 
-test('flat cases', () => {
-  const case1Path = getContent('__fixtures__/resultFlat_stylish.txt');
-  expect(genDiff(path1JSON, path2JSON))
-  .toEqual(readFileSync(case1Path, 'utf-8'));
-  
-  expect(genDiff(path1JSON, path2JSON, 'stylish'))
-  .toEqual(readFileSync(case1Path, 'utf-8'));
-  
-  const case2Path = getContent('__fixtures__/resultFlat_plain.txt');
-  expect(genDiff(path1JSON, path2JSON, 'plain'))
-  .toEqual(readFileSync(case2Path, 'utf-8'));
+const expectedResult1 = readFixture('resultStylish.txt');
+const expectedResult2 = readFixture('resultPlain.txt');
+const expectedResult3 = JSON.parse(readFixture('resultJSON.json'));
 
-  const case3Path = getContent('__fixtures__/resultFormatted.json');
-  expect(JSON.parse(genDiff(path1JSON, path2JSON, 'json')))
-  .toEqual(JSON.parse(readFileSync(case3Path)));
-});
+describe('genDiff functionality test', () => {
+  test('JSON cases', () => {
+    const filepath1 = getFixturePath('file1.json');
+    const filepath2 = getFixturePath('file2.json');
 
+    expect(genDiff(filepath1, filepath2)).toEqual(expectedResult1);
+    expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedResult1);
+    expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedResult2);
+    expect(JSON.parse(genDiff(filepath1, filepath2, 'json'))).toEqual(expectedResult3);
+  });
 
-test('nested yaml cases', () => {
-  const case4Path = getContent('__fixtures__/resultNested_stylish.txt');
-  expect(genDiff(path1YAML, path2YAML))
-  .toEqual(readFileSync(case4Path, 'utf-8'));
+  test('YML and YAML cases', () => {
+    const filepath1 = getFixturePath('file1.yml');
+    const filepath2 = getFixturePath('file2.yaml');
 
-  expect(genDiff(path1YAML, path2YAML, 'stylish'))
-  .toEqual(readFileSync(case4Path, 'utf-8'));
-
-  const case5Path = getContent('__fixtures__/resultNested_plain.txt');
-  expect(genDiff(path1YAML, path2YAML, 'plain'))
-  .toEqual(readFileSync(case5Path, 'utf-8'));
-});
-
-test('hexlet-test', () => {
-  const hexletCaseFile = getContent('__fixtures__/hexlet-test.txt');
-  const hexletpath1 = '__fixtures__/hexlet-file1.json';
-  const hexletpath2 = '__fixtures__/hexlet-file2.json';
-
-  expect(genDiff(hexletpath1, hexletpath2))
-  .toEqual(readFileSync(hexletCaseFile, 'utf-8'));
+    expect(genDiff(filepath1, filepath2)).toEqual(expectedResult1);
+    expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedResult1);
+    expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedResult2);
+    expect(JSON.parse(genDiff(filepath1, filepath2, 'json'))).toEqual(expectedResult3);
+  });
 });

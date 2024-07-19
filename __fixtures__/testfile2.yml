@@ -1,9 +1,0 @@
-includes: 'common.yaml'
-deliverables:
-  name: 'HTML100'
-  context:
-    idref: 'html'
-  output: '.'
-additional: 
-  super: cool
-  mega: good
