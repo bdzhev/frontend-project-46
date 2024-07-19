@@ -9,10 +9,10 @@ ENG: Difference compare tool is a program that determines the difference between
 
 ## Требования / Requirements
 Минимальные требования:
-- Node.js 13.2.0 и выше
+- Node.js 14.0 и выше
 
 ENG: Minimal requirements:
-- Node.js 13.2.0 and newer
+- Node.js 14.0 and newer
 
 ## Установка / Installation
 Для загрузки, выполните команду 'install' в папке программы
