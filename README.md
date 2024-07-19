@@ -1,7 +1,5 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/bdzhev/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/bdzhev/frontend-project-46/actions)
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/f43793ef6ae049e07b6b/maintainability)](https://codeclimate.com/github/bdzhev/frontend-project-46/maintainability)
+[![Actions Status](https://github.com/bdzhev/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/bdzhev/frontend-project-46/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/f43793ef6ae049e07b6b/maintainability)](https://codeclimate.com/github/bdzhev/frontend-project-46/maintainability)
 
 # Программа "Вычислитель отличий" // Difference compare tool 
 
