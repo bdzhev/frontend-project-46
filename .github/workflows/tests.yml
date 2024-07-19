@@ -5,8 +5,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-    matrix:
-      node-version: ['13.2.x']
+      matrix:
+        node-version: ['13.2.x']
 
     steps:
        - name: 'Setup Node.js'
