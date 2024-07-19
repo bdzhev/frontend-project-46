@@ -1,0 +1,25 @@
+name: tests
+
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+    matrix:
+      node-version: ['13.2.x']
+
+    steps:
+       - name: 'Setup Node.js'
+         uses: actions/setup-node@v3
+         with:
+           node-version: '18.x'
+           cache: 'npm'
+           
+       - run: make install
+
+       - name: 'Tests'
+         run: make test
+
+       - name: 'Linter'
+         run: make lint
+  
