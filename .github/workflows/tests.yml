@@ -9,10 +9,10 @@ jobs:
         node-version: ['13.2.x']
 
     steps:
-       - name: 'Setup Node.js'
+       - name: 'Setup Node.js ${{ matrix.node-version }}'
          uses: actions/setup-node@v2
          with:
-           node-version: '13.x'
+           node-version: ${{ matrix.node-version }}
            cache: 'npm'
            
        - run: make install
