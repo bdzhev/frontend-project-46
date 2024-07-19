@@ -27,7 +27,7 @@ const makePlain = (difference, keyPrefix = '') => {
         acc.push(makePlain(node.value, keyPrefix.concat(node.key, '.')));
         return acc;
       default:
-        throw new Error('Unknown item status.');
+        throw new Error(`Unknown item status. ${node.status}`);
     }
   }, []);
   return result.join('\n');

@@ -1,43 +1,49 @@
 #!/usr/bin/env node
 import _ from 'lodash';
 
-const addIndent = (count) => '  '.repeat(count);
 const indentStep = 1;
+const spaceForOperators = 2;
+const indentLength = 4;
 
-const parseObj = (data, depth) => {
-  const entries = _.sortBy(Object.entries(data), ([key]) => key);
-  const lines = entries.map((node) => {
-    const [key, value] = node;
-    if (typeof (value) === 'object') {
-      return (`${addIndent(depth + indentStep)}${key}: {\n${parseObj(value, depth + 1)}}`);
-    }
-    return (`${addIndent(depth + indentStep)}${key}: ${value}\n`);
-  });
-  return `{\n${lines.join('')}${addIndent(depth - indentStep)}}`;
+const makeIndent = (depth, spaceCount = indentLength) => (' '.repeat((depth * spaceCount) - spaceForOperators));
+
+const parseValue = (dataByKey, depth) => {
+  if (typeof (dataByKey) !== 'object') {
+    return _.toString(dataByKey);
+  }
+  if (dataByKey === null) {
+    return 'null';
+  }
+  const entries = _.sortBy(Object.entries(dataByKey), ([key]) => key);
+  const lines = entries
+    .map(([key, value]) => `${makeIndent(depth + indentStep)}  ${key}: ${parseValue(value, depth + indentStep)}`)
+    .join('\n');
+
+  return `{\n${lines}\n  ${makeIndent(depth)}}`;
 };
 
-const makeStylish = (node, depth = 1) => {
-  const nodeStylized = node.map((item) => {
-    const { key, value } = item;
-    const newDepth = depth + indentStep;
-    switch (item.status) {
+const makeLines = (lineSource, depth) => lineSource
+  .map((node) => {
+    const { key, value } = node;
+    switch (node.status) {
       case 'same':
-        return `${addIndent(newDepth)}${key}: ${value}`;
+        return `${makeIndent(depth)}  ${key}: ${parseValue(value, depth)}`;
       case 'removed':
-        return `${addIndent(newDepth - 1)}- ${key}: ${value}`;
+        return `${makeIndent(depth)}- ${key}: ${parseValue(value, depth)}`;
       case 'added':
-        if (typeof (value) === 'object') {
-          return `${addIndent(newDepth - 1)}+ ${key}: ${parseObj(value, newDepth + indentStep)}`;
-        }
-        return `${addIndent(newDepth - 1)}+ ${key}: ${value}`;
-      case 'changed':
-        return `${addIndent(newDepth - 1)}- ${key}: ${item.oldValue}\n${addIndent(newDepth - 1)}+ ${key}: ${item.newValue}`;
+        return `${makeIndent(depth)}+ ${key}: ${parseValue(value, depth)}`;
+      case 'changed': {
+        const deletedValue = `${makeIndent(depth)}- ${key}: ${parseValue(node.oldValue, depth)}`;
+        const addedValue = `${makeIndent(depth)}+ ${key}: ${parseValue(node.newValue, depth)}`;
+        return `${deletedValue}\n${addedValue}`;
+      }
       case 'hasChildren':
-        return `${addIndent(newDepth)}${key}: ${makeStylish(value, newDepth + indentStep)}`;
-      default: throw new Error('Incorrect item status.');
+        return `${makeIndent(depth)}  ${key}: {\n${makeLines(value, depth + indentStep).join('\n')}\n${makeIndent(depth)}  }`;
+      default:
+        throw new Error(`Incorrect node status. ${node.status}`);
     }
   });
-  return `{\n${nodeStylized.join('\n')}\n${addIndent(depth - indentStep)}}`;
-};
+
+const makeStylish = (difference) => `{\n${makeLines(difference, indentStep).join('\n')}\n}`;
 
 export default makeStylish;
