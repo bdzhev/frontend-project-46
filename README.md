@@ -71,6 +71,7 @@ Choose a desired format of the report. Available options:
 - plain
 
 If the -f flag is omitted, the report will be generated in the default stylish format.
+
 ------------
 Выберите желаемый формат отчета. Доступные варианты отчета:
 - json
