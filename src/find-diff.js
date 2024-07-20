@@ -7,11 +7,11 @@ const findDiff = (dataA, dataB) => {
     const dataAValue = dataA[key];
     const dataBValue = dataB[key];
 
-    if (!Object.hasOwn(dataA, key)) {
+    if (!_.has(dataA, key)) {
       return ({ key, status: 'added', value: dataBValue });
     }
 
-    if (!Object.hasOwn(dataB, key)) {
+    if (!_.has(dataB, key)) {
       return ({ key, status: 'removed', value: dataAValue });
     }
 
