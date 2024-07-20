@@ -5,6 +5,7 @@
 
 ## Description / О программе 
 DiffChecker is a CLI program that determines the difference between two text files in .json, .yaml and .yml formats provided by the user.
+
 Вычислитель отличий - программа, которая вычисляет семантические различия в двух предоставленных файлах в форматах .json, .yaml и .yml.
 
 ## Requirements / Требования
@@ -47,7 +48,7 @@ Path to the first file.
 Путь к первому файлу.
 - ```<filepath2>```
 Path to the second file.
-
+----------------
 Путь ко второму файлу.
 
 Paths to files can be both relative and absolute.
@@ -71,6 +72,7 @@ Choose a desired format of the report. Available options:
 
 If the -f flag is omitted, the report will be generated in the default stylish format.
 
+------------
 Выберите желаемый формат отчета. Доступные варианты отчета:
 - json
 - stylish (по умолчанию)
