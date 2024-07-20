@@ -24,6 +24,9 @@ jobs:
        - name: 'Linter'
          run: make lint
 
+       - name: CodeClimate Code Coverage Test Reporter
+         uses: xylabs/action-code-climate-test-reporter@v1.0.0
+            
        - name: upload code coverage
          uses: ./.github/actions/cc-test-reporter
          env:
