@@ -24,12 +24,15 @@ For a successful download, enter and run 'install' while in the program's main f
 make install
 ```
 Install the required dependencies and modules
+
 Загрузка необходимых зависимостей
+
 
 ```
 gendiff
 ```
 Generate a report between two files.
+
 Сгенерировать отчет о разнице между двумя файлами.
 
 ### Usage / Использование
@@ -40,12 +43,15 @@ gendiff <filepath1> <filepath2> -f <format>
 ### Parameters / Параметры
 - ```<filepath1>```
 Path to the first file.
+
 Путь к первому файлу.
 - ```<filepath2>```
 Path to the second file.
+
 Путь ко второму файлу.
 
 Paths to files can be both relative and absolute.
+
 Пути к файлам могут быть как и относительными, так и абсолютными.
 ### Options / Опции
 
@@ -53,6 +59,7 @@ Paths to files can be both relative and absolute.
 gendiff -h
 ```
 Get CLI program manual
+
 Получить инструкцию по использованию программы
 ```
 gendiff -f <format>
@@ -61,12 +68,14 @@ Choose a desired format of the report. Available options:
 - json
 - stylish (by default)
 - plain
+
 If the -f flag is omitted, the report will be generated in the default stylish format.
 
 Выберите желаемый формат отчета. Доступные варианты отчета:
 - json
 - stylish (по умолчанию)
 - plain
+
 Если флаг -f опущен, отчет будет сгенерирован в формате stylish по умолчанию.
 
 ## Demo of the program / Демонстрация использования
