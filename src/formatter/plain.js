@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 const formatValue = (value) => {
+  if (value === null) {
+    return 'null';
+  }
   if (typeof (value) === 'object' || Array.isArray(value)) {
     return '[complex value]';
   }
