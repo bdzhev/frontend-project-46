@@ -8,11 +8,11 @@ const indentLength = 4;
 const makeIndent = (depth, spaceCount = indentLength) => (' '.repeat((depth * spaceCount) - spaceForOperators));
 
 const parseValue = (dataByKey, depth) => {
-  if (typeof (dataByKey) !== 'object') {
-    return _.toString(dataByKey);
-  }
   if (dataByKey === null) {
     return 'null';
+  }
+  if (!_.isObject(dataByKey)) {
+    return _.toString(dataByKey);
   }
   const entries = _.sortBy(Object.entries(dataByKey), ([key]) => key);
   const lines = entries
