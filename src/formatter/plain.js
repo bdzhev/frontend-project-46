@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+import _ from 'lodash';
+
 const formatValue = (value) => {
   if (value === null) {
     return 'null';
   }
-  if (typeof (value) === 'object' || Array.isArray(value)) {
+  if (_.isObject(value) || Array.isArray(value)) {
     return '[complex value]';
   }
   if (typeof (value) === 'number' || typeof (value) === 'boolean') {
