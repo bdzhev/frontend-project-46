@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "type": "module",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/bdzhev/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/bdzhev/frontend-project-46/actions)",
+  "description": "DiffChecker is a CLI program that determines the difference between two text files in .json, .yaml and .yml formats provided by the user.",
   "main": "src/index.js",
   "scripts": {
     "test": "npx jest"
