@@ -12,7 +12,7 @@ const findDiff = (data1, data2) => {
       return ({ key, type: 'removed', value: data1[key] });
     }
 
-    if (typeof (data1[key]) === 'object' && typeof (data2[key]) === 'object') {
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
       return ({ key, type: 'nested', value: findDiff(data1[key], data2[key]) });
     }
 
