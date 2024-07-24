@@ -25,8 +25,8 @@ const parseValue = (dataByKey, depth) => {
 const makeLines = (lineSource, depth) => lineSource
   .map((node) => {
     const { key, value } = node;
-    switch (node.status) {
-      case 'same':
+    switch (node.type) {
+      case 'unchanged':
         return `${makeIndent(depth)}  ${key}: ${parseValue(value, depth)}`;
       case 'removed':
         return `${makeIndent(depth)}- ${key}: ${parseValue(value, depth)}`;
@@ -37,10 +37,10 @@ const makeLines = (lineSource, depth) => lineSource
         const addedValue = `${makeIndent(depth)}+ ${key}: ${parseValue(node.newValue, depth)}`;
         return `${deletedValue}\n${addedValue}`;
       }
-      case 'hasChildren':
+      case 'nested':
         return `${makeIndent(depth)}  ${key}: {\n${makeLines(value, depth + indentStep).join('\n')}\n${makeIndent(depth)}  }`;
       default:
-        throw new Error(`Incorrect node status. ${node.status}`);
+        throw new Error(`Incorrect node type. ${node.type}`);
     }
   });
 

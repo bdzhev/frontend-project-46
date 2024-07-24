@@ -14,8 +14,8 @@ const formatValue = (value) => {
 
 const makePlain = (difference, keyPrefix = '') => {
   const result = difference.reduce((acc, node) => {
-    switch (node.status) {
-      case 'same':
+    switch (node.type) {
+      case 'unchanged':
         return acc;
       case 'changed': {
         const line = (`Property '${keyPrefix.concat(node.key)}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`);
@@ -29,12 +29,12 @@ const makePlain = (difference, keyPrefix = '') => {
         const line = `Property '${keyPrefix.concat(node.key)}' was added with value: ${formatValue(node.value)}`;
         return ([...acc, line]);
       }
-      case 'hasChildren': {
+      case 'nested': {
         const line = makePlain(node.value, keyPrefix.concat(node.key, '.'));
         return ([...acc, line]);
       }
       default:
-        throw new Error(`Unknown item status. ${node.status}`);
+        throw new Error(`Unknown node type. ${node.type}`);
     }
   }, []);
   return result.join('\n');

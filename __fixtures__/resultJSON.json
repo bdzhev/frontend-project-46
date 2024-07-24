@@ -1,52 +1,52 @@
 [
   {
     "key":"common",
-    "status":"hasChildren",
+    "type":"nested",
     "value": [
       {
         "key":"follow",
-        "status":"added",
+        "type":"added",
         "value":false
       },
       {
         "key":"setting1",
-        "status":"same",
+        "type":"unchanged",
         "value":"Value 1"
       },
       {
         "key":"setting2",
-        "status":"removed",
+        "type":"removed",
         "value":200
       },
       {
         "key":"setting3",
-        "status":"changed",
+        "type":"changed",
         "oldValue":true,
         "newValue":null
       },
       {
         "key":"setting4",
-        "status":"added",
+        "type":"added",
         "value":"blah blah"
       },
       {
         "key":"setting5",
-        "status":"added",
+        "type":"added",
         "value": {
           "key5":"value5"
         }
       },
       {
         "key":"setting6",
-        "status":"hasChildren",
+        "type":"nested",
         "value": [
           {
             "key":"doge",
-            "status":"hasChildren",
+            "type":"nested",
             "value": [
               {
                 "key":"wow",
-                "status":"changed",
+                "type":"changed",
                 "oldValue":"",
                 "newValue":"so much"
               }
@@ -54,12 +54,12 @@
           },
           {
             "key":"key",
-            "status":"same",
+            "type":"unchanged",
             "value":"value"
           },
           {
             "key":"ops",
-            "status":"added",
+            "type":"added",
             "value":"vops"
           }
         ]
@@ -68,22 +68,22 @@
   },
   {
     "key":"group1",
-    "status":"hasChildren",
+    "type":"nested",
     "value": [
       {
         "key":"baz",
-        "status":"changed",
+        "type":"changed",
         "oldValue":"bas",
         "newValue":"bars"
       },
       {
         "key":"foo",
-        "status":"same",
+        "type":"unchanged",
         "value":"bar"
       },
       {
         "key":"nest",
-        "status":"changed",
+        "type":"changed",
         "oldValue": {
           "key":"value"
         },
@@ -93,7 +93,7 @@
   },
   {
     "key":"group2",
-    "status":"removed",
+    "type":"removed",
     "value": {
       "abc":12345,
       "deep": {
@@ -103,7 +103,7 @@
   },
   {
     "key":"group3",
-    "status":"added",
+    "type":"added",
     "value": {
       "deep": {
         "id": {
