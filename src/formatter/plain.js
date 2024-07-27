@@ -1,17 +1,15 @@
-#!/usr/bin/env node
 import _ from 'lodash';
 
-const formatValue = (value) => {
-  if (value === null) {
-    return 'null';
-  }
+const stringify = (value) => {
   if (_.isObject(value) || Array.isArray(value)) {
     return '[complex value]';
   }
-  if (typeof (value) === 'number' || typeof (value) === 'boolean') {
+  if (typeof (value) === 'number'
+  || typeof (value) === 'boolean'
+  || _.isNull(value)) {
     return value;
   }
-  return `'${value}'`;
+  return `'${(value)}'`;
 };
 
 const makePlain = (difference, keyPrefix = '') => {
@@ -20,7 +18,7 @@ const makePlain = (difference, keyPrefix = '') => {
       case 'unchanged':
         return acc;
       case 'changed': {
-        const line = (`Property '${keyPrefix.concat(node.key)}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`);
+        const line = (`Property '${keyPrefix.concat(node.key)}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`);
         return ([...acc, line]);
       }
       case 'removed': {
@@ -28,7 +26,7 @@ const makePlain = (difference, keyPrefix = '') => {
         return ([...acc, line]);
       }
       case 'added': {
-        const line = `Property '${keyPrefix.concat(node.key)}' was added with value: ${formatValue(node.value)}`;
+        const line = `Property '${keyPrefix.concat(node.key)}' was added with value: ${stringify(node.value)}`;
         return ([...acc, line]);
       }
       case 'nested': {

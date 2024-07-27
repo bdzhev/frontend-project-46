@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import _ from 'lodash';
 
 const indentStep = 1;
@@ -7,34 +6,31 @@ const indentLength = 4;
 
 const makeIndent = (depth, spaceCount = indentLength) => (' '.repeat((depth * spaceCount) - spaceForOperators));
 
-const parseValue = (dataByKey, depth) => {
-  if (dataByKey === null) {
-    return 'null';
+const stringify = (differenceValue, depth) => {
+  if (!_.isObject(differenceValue)) {
+    return String(differenceValue);
   }
-  if (!_.isObject(dataByKey)) {
-    return _.toString(dataByKey);
-  }
-  const entries = _.sortBy(Object.entries(dataByKey), ([key]) => key);
+  const entries = _.sortBy(Object.entries(differenceValue), ([key]) => key);
   const lines = entries
-    .map(([key, value]) => `${makeIndent(depth + indentStep)}  ${key}: ${parseValue(value, depth + indentStep)}`)
+    .map(([key, value]) => `${makeIndent(depth + indentStep)}  ${key}: ${stringify(value, depth + indentStep)}`)
     .join('\n');
 
   return `{\n${lines}\n  ${makeIndent(depth)}}`;
 };
 
-const makeLines = (lineSource, depth) => lineSource
+const makeLines = (difference, depth) => difference
   .map((node) => {
     const { key, value } = node;
     switch (node.type) {
       case 'unchanged':
-        return `${makeIndent(depth)}  ${key}: ${parseValue(value, depth)}`;
+        return `${makeIndent(depth)}  ${key}: ${stringify(value, depth)}`;
       case 'removed':
-        return `${makeIndent(depth)}- ${key}: ${parseValue(value, depth)}`;
+        return `${makeIndent(depth)}- ${key}: ${stringify(value, depth)}`;
       case 'added':
-        return `${makeIndent(depth)}+ ${key}: ${parseValue(value, depth)}`;
+        return `${makeIndent(depth)}+ ${key}: ${stringify(value, depth)}`;
       case 'changed': {
-        const deletedValue = `${makeIndent(depth)}- ${key}: ${parseValue(node.oldValue, depth)}`;
-        const addedValue = `${makeIndent(depth)}+ ${key}: ${parseValue(node.newValue, depth)}`;
+        const deletedValue = `${makeIndent(depth)}- ${key}: ${stringify(node.value1, depth)}`;
+        const addedValue = `${makeIndent(depth)}+ ${key}: ${stringify(node.value2, depth)}`;
         return `${deletedValue}\n${addedValue}`;
       }
       case 'nested':
