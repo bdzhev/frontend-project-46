@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { load } from 'js-yaml';
 
 const parse = (format) => {
