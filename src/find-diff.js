@@ -1,9 +1,8 @@
-#!/usr/bin/env node
 import _ from 'lodash';
 
 const findDiff = (data1, data2) => {
-  const keysSorted = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
-  const result = keysSorted.map((key) => {
+  const sortedKeys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
+  const result = sortedKeys.map((key) => {
     if (!_.has(data1, key)) {
       return ({ key, type: 'added', value: data2[key] });
     }
@@ -23,8 +22,8 @@ const findDiff = (data1, data2) => {
     return ({
       key,
       type: 'changed',
-      oldValue: data1[key],
-      newValue: data2[key],
+      value1: data1[key],
+      value2: data2[key],
     });
   });
   return result;
