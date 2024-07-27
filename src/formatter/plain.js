@@ -4,12 +4,10 @@ const stringify = (value) => {
   if (_.isObject(value) || Array.isArray(value)) {
     return '[complex value]';
   }
-  if (typeof (value) === 'number'
-  || typeof (value) === 'boolean'
-  || _.isNull(value)) {
-    return value;
+  if (_.isString(value)) {
+    return `'${(value)}'`;
   }
-  return `'${(value)}'`;
+  return value;
 };
 
 const makePlain = (difference, keyPrefix = '') => {
