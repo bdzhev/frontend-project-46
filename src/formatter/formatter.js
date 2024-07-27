@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import makeStylish from './stylish.js';
 import makePlain from './plain.js';
 
@@ -11,7 +10,7 @@ const makeFormatted = (difference, format) => {
     case 'json':
       return JSON.stringify(difference);
 
-    default: throw new Error(`Unknown style option.
+    default: throw new Error(`Unknown style option '${format}'
       Available options: "stylish", "plain" and "json". More info: gendiff -h`);
   }
 };
