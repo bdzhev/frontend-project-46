@@ -7,7 +7,7 @@ import makeFormatted from './formatter/formatter.js';
 
 const getData = (filepath) => {
   const content = readFileSync(resolve(cwd(), filepath));
-  const type = extname(filepath).slice(1);
+  const type = extname(filepath);
   return parse(content, type);
 };
 

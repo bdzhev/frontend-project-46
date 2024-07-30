@@ -2,10 +2,10 @@ import { load } from 'js-yaml';
 
 const parse = (format) => {
   switch (format) {
-    case 'json':
+    case '.json':
       return JSON.parse;
-    case 'yaml':
-    case 'yml':
+    case '.yaml':
+    case '.yml':
       return load;
     default:
       throw new Error(`Unknown data format '.${format}'. Use 'gendiff - h' for supported file format info.`);

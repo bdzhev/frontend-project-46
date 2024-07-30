@@ -5,9 +5,9 @@ const stringify = (value) => {
     return '[complex value]';
   }
   if (_.isString(value)) {
-    return `'${(value)}'`;
+    return `'${value}'`;
   }
-  return value;
+  return String(value);
 };
 
 const makePlain = (difference, keyPrefix = '') => {
